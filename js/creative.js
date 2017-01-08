@@ -20,7 +20,7 @@
     $('body').scrollspy({
         target: '.navbar-fixed-top',
         offset: 51
-    })
+    });
 
     // Closes the Responsive Menu on Menu Item Click
     $('.navbar-collapse ul li a').click(function() {
@@ -36,11 +36,17 @@
     );
 
     // Offset for Main Navigation
-    $('#mainNav').affix({
-        offset: {
-            top: 100
-        }
-    })
+    var pageName = $('#mainNav').data('page');
+    console.log(pageName);
+    if (pageName === 'index') {
+        $('#mainNav').affix({
+            offset: {
+                top: 100
+            }
+        });
+    } else {
+        $('#mainNav').addClass('affix');
+    }
 
     // Initialize WOW.js Scrolling Animations
     new WOW().init();
