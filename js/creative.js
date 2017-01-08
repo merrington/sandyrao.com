@@ -37,7 +37,6 @@
 
     // Offset for Main Navigation
     var pageName = $('#mainNav').data('page');
-    console.log(pageName);
     if (pageName === 'index') {
         $('#mainNav').affix({
             offset: {
