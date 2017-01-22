@@ -58,10 +58,10 @@ pagename: contact
 <script type="text/javascript" >
  $(function() {
      $('form').submit(function(event) {
+         event.preventDefault();
          var button = $('button#submit');
          button.html("<i class='fa fa-spinner fa-lg fa-fw'></i>");
          button.prop('disabled', true);
-         event.preventDefault();
 
          var name = $('#name').val();
          var _replyto = $('#email').val();
