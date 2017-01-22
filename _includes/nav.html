@@ -8,7 +8,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="/#page-top">{{site.title}}</a>
+            {% if page.pagename == 'index' %}
+            <a class="navbar-brand page-scroll" href="#page-top">{{site.title}}</a>
+            {% else %}
+            <a class="navbar-brand page-scroll" href="/">{{site.title}}</a>
+            {% endif %}
         </div>
 
         {% if page.pagename == 'index' %}
