@@ -1,0 +1,99 @@
+---
+layout: front
+title: Contact Us
+pagename: contact
+---
+<div class="container" style="margin-top: 60px;">
+    <div class="row" >
+        <div class="col-lg-12 text-center" >
+            <h2 class="section-heading" >Contact Us</h2>
+            <hr class="primary" >
+        </div>
+    </div>
+</div>
+
+<div class="container" >
+    <div class="row" >
+        <div class="col-sm-8 col-sm-offset-2">
+            <p>Contact us for any questions or to book your next appointment.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-bottom: 20px;">
+    <div class="row" >
+        <div class="col-xs-8 col-xs-offset-2" >
+            <form >
+                <div class="form-group" >
+                    <label for="name" >Name</label>
+                    <input class="form-control" type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group" >
+                    <label for="email" >Email</label>
+                    <input class="form-control" type="email" id="email" name="_replyto" required>
+                </div>
+                <div class="form-group" >
+                    <label for="phone" >Phone</label>
+                    <input class="form-control" type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group" >
+                    <label for="subject" >Subject</label>
+                    <input class="form-control" type="text" id="subject" name="_subject" required>
+                </div>
+                <div class="form-group" >
+                    <label for="message" >Message</label>
+                    <textarea class="form-control" rows="4" id="message" name="message" required></textarea>
+                </div>
+                <input type="text" name="_gotcha" style="display: none;" >
+
+                <button type="submit" class="btn btn-primary" id="submit" >Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include social_media.html %}
+
+<script type="text/javascript"  src="/js/jquery.js" ></script>
+<script type="text/javascript" >
+ $(function() {
+     $('form').submit(function(event) {
+         var button = $('button#submit');
+         button.html("<i class='fa fa-spinner fa-lg fa-fw'></i>");
+         button.prop('disabled', true);
+         event.preventDefault();
+
+         var name = $('#name').val();
+         var _replyto = $('#email').val();
+         var phone = $('#phone').val();
+         var _subject = $('#subject').val();
+         var message = $('#message').val();
+         var _gotcha = $('#_gotcha').val();
+
+         $.ajax({
+             url: 'https://formspree.io/admin@sandyrao.com',
+             method: 'POST',
+             data: {
+                 name: name,
+                 _replyto: _replyto,
+                 phone: phone,
+                 _subject: _subject,
+                 message: message,
+                 _gotcha: _gotcha
+             },
+             dataType: 'json',
+             success: function(data, status, xhr) {
+                 $('form')[0].reset();
+
+                 button.prop('disabled', true);
+                 button.html('Form submitted!');
+             },
+             error: function(data) {
+                 console.error(data);
+                 button.html('The form could not be sent. Please email admin@sandyrao.com');
+                 button.prop('disabled', false);
+             }
+         });
+     });
+ });
+</script>

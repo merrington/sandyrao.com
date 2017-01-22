@@ -11,6 +11,7 @@
             <a class="navbar-brand page-scroll" href="/#page-top">{{site.title}}</a>
         </div>
 
+        {% if page.pagename == 'index' %}
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -24,11 +25,29 @@
                     <a href="{{ "/fees" | relative_url }}">Fees</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
+                    <a href="{{ "/contact" | relative_url }}">Contact</a>
                 </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
+        {% else %}
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="{{ "/#about" | relative_url }}">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="{{ "/#services" | relative_url }}">Services</a>
+                </li>
+                <li>
+                    <a href="{{ "/fees" | relative_url }}">Fees</a>
+                </li>
+                <li>
+                    <a href="{{ "/contact" | relative_url }}">Contact</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
     </div>
     <!-- /.container-fluid -->
 </nav>
